@@ -167,7 +167,7 @@ In this section I have summarized the steps for running the best model after exp
 
 Below are the steps in this regard:-
 * Changing the directory to the desired one using the command prompt.
-* Running the train script (FinalModeltrain.py) used for training the best model using command ----> *python FinalModeltrain.py
+* Running the train script (FinalModeltrain.py) used for training the best model using command ----> *python FinalModeltrain.py* 
 * Installing flask library using command -----> *pip install flask
 * Running the predict script (FinalModelpredict.py) used for loading the best model using command ----> *python FinalModelpredict.py
 * Installing waitress library (for Windows) using command ------> *pip install waitress
