@@ -110,7 +110,7 @@ Here too the XGBoost for Classification model outperformed the others.
 
 The code for best model i.e., XGBoost for Classification was first saved as a Python Notebook (Final Model Code.ipynb) then saved as a Python script (FinalModeltrain.py) for further deployment as a web service.
 
-Name of the Python script used - ***FinalModeltrain.py***
+Name of Python script used - ***FinalModeltrain.py***
 
 This above file would be used for training the final model and further deployment in a server. 
 
@@ -126,7 +126,7 @@ With unpacking the model and the DictVectorizer here, I would be able to predict
 
 Creating a Web service for our Model using Flask - 
 
-Name of the Python script used - ***FinalModelpredict.py***
+Name of Python script used - ***FinalModelpredict.py***
 
 * Here I use the **Flask** library in Python to create a web service. The script used here would be implementing the functionality of prediction to our stroke web service and be making it usable in a development environment. To be able to use the model without running the code firstly, I open and load the previously saved binary file as shown below.
 
@@ -136,11 +136,21 @@ Name of the Python script used - ***FinalModelpredict.py***
 
 ![image](https://user-images.githubusercontent.com/50409210/139582818-aed76cc8-a5ef-4727-994f-1cd83c8debc4.png)
 
-Here I made a simple web server that predicts the risk of stroke for every new person. When I ran the app I got a warning that this server is not a WGSI server, hence not suitable for production environmnets. To fix this issue for my Windows machine, I used the library **waitress** to run the waitress WSGI server. Thus, this fix helped me make a production server that predicts the risk of stroke for new customers.
+The details of a sample new person are provided in JSON format. These details are sent as a POST request to the web service. The web service sends back a response in JSON format which is converted back into a Python dictionary. Finally, a response message is printed based on the stroke decision provided by the model (threshold as 0.55 for stroke decision) for the new person.
+
+Name of Python script used - ***FinalModelpredicttest.py***
+
+![image](https://user-images.githubusercontent.com/50409210/139594219-9776d254-b845-475a-8057-ef0ee438bef6.png)
+
+As shown above, I made a simple web server that predicts the risk of stroke for every new person. When I ran the app I got a warning that this server is not a WGSI server, hence not suitable for production environmnets. To fix this issue for my Windows machine, I used the library **waitress** to run the waitress WSGI server. Thus, this fix helped me make a production server that predicts the risk of stroke for new customers.
 
 
 Creating a Python virtual environment using Pipenv - 
-Virtual environments can help solve library version conflictions in each machine and manage the dependencies for production environments. I used the **Pipenv** library to create a virtual environment for my Stroke Prediction project. This was using the following steps:-
+
+Names of files used - ***Pipfile*** and ***Pipfile.lock***
+
+Virtual environments can help solve library version conflictions in each machine and manage the dependencies for production environments. I used the **Pipenv** library to create a virtual environment for my Stroke Prediction project. This was done using the following steps:-
+
 * Firstly, I installed pipenv library using pip install pipenv. Then, I installed all the necessary libraries for my project in the new virtual environment like numpy, flask, pandas (also specifying exact versions in some cases) using pipenv command like, pipenv install numpy sklearn==0.24.1 flask. Using pipenv command created two files named Pipfile and Pipfile.lock. Both these files contained library-related details, version names and hash files. If I want to run the project in another machine, I can easily install the libraries using command pipenv install, which would look into Pipfile and Pipfile.lock to install the libraries with specified version suitable for my project.
 
 * After installing the required libraries I can run the project in the virtual environment with pipenv shell command. This will go to the virtual environment's shell and then any command I run will use the virtual environment's libraries.
@@ -149,10 +159,13 @@ Virtual environments can help solve library version conflictions in each machine
 
 
 Environment Management using Containerization in Docker - 
+
+Name of file used - ***Dockerfile***
+
 Docker allows to separate or isolate my project from any system machine and enables running it smoothly on any machine using a container. 
 * Firstly, I had to build or make a Docker image. I used a Python Docker image from Docker website[https://hub.docker.com/_/python]. 
 
-This Docker image file (***Dockerfile***) had dependencies for my project. 
+This Docker image file had dependencies for my project. 
 ![image](https://user-images.githubusercontent.com/50409210/139591380-10ffb4c1-263f-4509-a1b4-993c0d7c67ed.png)
 
 * After creating the Dockerfile and writing the settings in it, I built it and specified the name zoomcamp-test for this Dockerfile, using the command below:
@@ -166,10 +179,10 @@ This Docker image file (***Dockerfile***) had dependencies for my project.
 
 ## Instructions on the Running the Project:
 
-In this section I have summarized the steps for running the best model after exporting it from Notebook to a script and thereafter deployinh it as an app using Docker.
+In this section I have summarized the steps for running the best model after exporting it from Notebook to a script and thereafter deploying it locally as an app using Docker.
 
 Below are the steps in this regard:-
-* Changing the directory to the desired one using the command prompt.
+* Changing the directory to the desired one using the command prompt terminal.
 * Running the train script (FinalModeltrain.py) used for training the best model using command ----> *python FinalModeltrain.py* 
 * Installing flask library using command -----> *pip install flask*
 * Running the predict script (FinalModelpredict.py) used for loading the best model using command ----> *python FinalModelpredict.py*
@@ -201,6 +214,7 @@ Below are the steps in this regard:-
 * Thereafter, mapping the port in our container (5000) to the port in our host machine (5000) using command ----> *docker run -it --rm -p 5000:5000 zoomcamp-test*
   
   Both the above 2 steps would launch our waitress service giving below output:-
+  
   *INFO: waitress serving on http://0.0.0.0:5000*
   
 * Then in fresh cmd terminal changing the directory to the desired one and getting into the virtual environment created earlier using command ----> *pipenv shell*
