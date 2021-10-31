@@ -6,107 +6,100 @@ Prepared by - Sukriti Shukla
 
 ## Introduction 
 
-Stroke as a medical condition can cause severe health implications and even lead to the death of a person. If identified and treated within time, it save one's life. There are a number of factors that can lead to strokes. The purpose of this project was to understand what are the factors that influence the incidence of strokes in patients. It was interesting to study a publicly available dataset in Kaggle and make use of Python Machine Learning techniques to build a model for predicting strokes incidents using Supervised Machine learning techniques.
+Stroke as a medical condition can cause severe health implications and even lead to the death of a person. If identified and treated within time, it can save one's life. There are a number of factors that can lead to strokes. The purpose of this project was to understand what are the factors that influence the incidents of strokes in patients. It was interesting to study a publicly available dataset in Kaggle and make use of Python Machine Learning techniques to build a model for predicting strokes incidents using Supervised Machine learning techniques.
 
-Firstly, I prepared my data by cleaning and formatting the dataset. Then, I used Exploratory Data Analysis techniques in Python to visualize relationships between different factors in the dataset like BMI, Hypertension, Alcoholism or Smoking etc. and their influence on risk of strokes. I also analyzed important features influencing strokes in patients.   
+Firstly, I prepared my data by cleaning and formatting the dataset. Then, I used Exploratory Data Analysis techniques in Python to visualize relationships between different factors in the dataset like BMI, Hypertension, Heart disease or Smoking etc. and their influence on the risk of strokes. I also analyzed the importance of features influencing stroke in patients.   Once my data was prepared, I started pre-processing it for use in different Supervised Machine Learning models. This involved splitting the data into subsets, identifying & segregating the feature matrix from the target variable and one-hot encoding of categorical variables in datasets. Since my dataset was used to predict strokes, I used Binary Classification models from Python to train on my datasets. After this, I trained multiple Binary Classification models both Regression-based & Tree-based. Each of the model was evaluated using classification metrics AUC score and their performances compared. Thereafter the models were tuned using different parameters to find the most optimal parameters.Lastly, multiple final models with optimal parameters were run to select the Best Model for making stroke predictions on this dataset.
 
-Once my data was prepared, I started pre-processing it for use in different Supervised Machine Learning models. This involved splitting the data into subsets, identifying & segregating the feature matrix from the target variable and one-hot encoding of categorical variables in datasets. Since my dataset was used to predict strokes, I used Binary Classification models from Python to train on my datasets. After this, I trained multiple Binary Classification models both Regression-based & Tree-based. Each of the model was evaluated using classification metrics AUC score and their performances compared. Thereafter the models were tuned using different parameters to find the most optimal parameters.
-Multiple Final models with optimal parameters were run to select the Best Model for making stroke predictions.
+Once the best model for my dataset was selected its code was exported from a Python Notebook into a Python script. Thereafter, this model was put into a web service using Flask. A Python virtual environment was created using Pipenv containing all the necessary dependencies and packages for running the model. Then the model was deployed locally using Docker as a containerized service.  
 
+In the end, this locally deployed model was used to predict the risk of stroke for a new 'sample person' with unseen data as input. The model gave as output (shown below) details about the risk of stroke or not as True or False and the probability of stroke for this 'sample person' as a predictions made by the model deployed.
 
-Once the best model for my dataset was selected its code was exported from a Python Notebook into a Python script. Thereafter, this best model was put into a web service using Flask. A Python virtual environment was created using Pipenv. this virtual environment contained all the necessary dependencies and packages for running the model. Then the model was deployed locally with Docker into a containerized service.  
+![image](https://user-images.githubusercontent.com/50409210/139595043-05b9117a-8af1-4fc0-81ab-3775d34a5cb1.png)
 
-Finally, this locally deployed model was used to predict the risk of stroke for a 'sample person' with unseen feature data. The model gave as output details about the incidence of stroke or not and the probability of stroke for this 'sample person' based on the predictions made by the model deployed.
 
 
 ## Data Sources and Preparation: 
 
 ### Sources of Data -
 
-For this project, I retrieved data from Kaggle Public Dataset - [Stroke Prediction Dataset](https://www.kaggle.com/fedesoriano/stroke-prediction-dataset) Data shared on Kaggle as a csv file (*healthcare-dataset-stroke-data.csv*).
+For this project, I retrieved data from Kaggle Public Dataset - [Stroke Prediction Dataset](https://www.kaggle.com/fedesoriano/stroke-prediction-dataset) Data was shared on Kaggle as a csv file (*healthcare-dataset-stroke-data.csv*).
 
 
-### Data Processing Steps - 
+### Data Preparaion and Process Steps - 
 
-* I processed the dataset using Python in-built functions and libraries such as **Pandas** for manipulation and structuring them as DataFrames.
-* **Numpy** functions along with statistical analysis techniques like scaling were used to align the ranges of different factors. 
+Following steps were used in preparing the data from the source:-
+
+* I processed the dataset using Python in-built functions and libraries such as **Pandas** for manipulation and structuring them as DataFrames.**Numpy** functions along with statistical analysis techniques like scaling were used to align the ranges of different factors. 
 * Once the data was cleaned & formatted it was used to perform Exploratory Data Analysis (EDA) and create a series of visualizations for drawing insights about factors.
-* Categorical features in the dataset like gender, work_type, Residence_type etc. were converted one-hot encoded using **DictVectorizer**.
-* Correlation of numeric features and categorical features was computed to understand which factors influenced the risk of stroke.
-* **Feature Importance** techniques were implemented for different models to understand which factors affected stroke and influenced stroke predictions. 
-* **Binary Classification Supervised Machine Learning algorithms** both regression-based and tree-based in **scikit-learn** were used to fit and make predictions about stroke   incidents.
-* I used **Regression-based models** like Logistic Regression and **Tree-based models** like Decision Trees, Random Forests and XGBoost to make predictions. 
-* Different models were compared and evaluated using AUC score metrics. Parameter of models were tuned to improve their performance using **Cross-Validation** techniques like K-Fold.
-* As my dataset had **Imbalanced classes** I used **SMOTE analysis** technique to remove the class imbalance and oversample the minority class label (stroke=1 ie., those having a risk of stroke). The model was additionally evaluated on this re-balanced dataset also using AUC score just to see any improvements in performance.
-* Based on the AUC scores computed from each model the best model was chosen as **XGBoost for Classification**. This model with its optimal parameter was exported from Python notebook into a Python script to be used for further use in a Web service through ** Flask** and local deployment using **Docker container service**.
+* Categorical features in the dataset like gender, work_type, Residence_type etc. were converted into dictionaries using one-hot encoder **DictVectorizer**.
+* **Correlation** of numerical and categorical features was computed to understand their relation with stroke variable and inter-relationship among themselves.
+* **Feature Importance** techniques were implemented for different models to understand which factors affected stroke more and influenced stroke predictions. 
+* **Binary Classification Supervised Machine Learning algorithms** both regression-based (like Logistic Regression) and tree-based (like Decision Trees) were used from **scikit-learn** to train data and make predictions. **Ensemble methods** using bagging like Random Forest and boosting like eXtreme Gradient Boosting or XGBoost were also used. 
+* Models were compared and their performance evaluated using metrics like - roc_auc_score, f1_score, classification_report etc. 
+* Parameter of the models were tuned to improve their performance and select the most optimal parameters for each model.
+* **Cross-Validation** techniques like **K-Fold** was used which split the dataset into ‘k’ number of subsets, then used k-1 subsets to train the model and used the last subset as a validation set to test the model. Then the score of the model on each fold was averaged to evaluate the performance of the model.
+* To address the problem of Imbalanced classes in my dataset I oversampled the minority class using **Synthetic Minority Oversampling Technique (SMOTE)**. Data augmentation was done to oversample the minority class label (stroke=1 ie., those having a risk of stroke). Although, this technique was only used additionally on my dataset just to assess its impact. The model was evaluated on this re-balanced dataset also using AUC score just to see any improvements in performance.
+* Finally after evaluating all the different models and their performances the best model was chosen as **XGBoost for Classification**. This model with its optimal parameter was used hereafter (exported from Python notebook into a Python script) in a Web service using **Flask** and in local deployment using **Docker**.
 
 
 
-### Details about Python Notebook - 
+### EDA and Model Training - 
+
 Name of the Python Notebook - ***ML ZoomCamp - Midterm Project.ipynb***
 
+Below are the important components from the Python Notebook used to load data, perform EDA, train multiple models and evaluate them to select the best model:-
 * **Data Loading** - Firstly, I loaded all the basic libraries used in the project. Then, I imported the data from the .csv file into a Pandas DataFrame and got a snapshot of data (like exploring the unique values in each column of dataset, getting a statistical summary of dataset).
-*  **Data Cleaning and Formatting** - I cleaned the dataset by formatting the column to lower case, imputing missing values with mean or mode of values and dropping irrelevant columns (like 'id'). I also separating numerical and categorical variable columns. 
+*  **Data Cleaning and Formatting** - I cleaned the dataset by formatting the column to lower case, imputing missing values with mean or mode of values and dropping irrelevant columns (like 'id'). I also separated numerical and categorical variable columns. 
 
-*  **Exploratory Data Analysis (EDA)** - Then, I performed EDA using Python libraries like Matplotlib, Pandas and Seaborn to analyze data and visualize key components to answer important questions like the following:-
-      ****Who are at risk of a stroke? 
-      ****What are the most highly correlated numerical or categorical features with stroke?
-    
-A number of visualizations were made using Matplotlib and Seaborn like factorplot, bar chart, countplot, boxplot and violinplot to understand the relation of different factors like BMI, age, gender, residence_type, work_type with the stroke variable.  
-The following **insights** were drawn - 
+* **Exploratory Data Analysis (EDA)** - Then, I performed EDA using Python libraries like Matplotlib, Pandas and Seaborn to analyze data and visualize key components to answer important questions like the following:-
+      ****Who are at risk of a stroke? or What are the most highly correlated numerical or categorical features with stroke?
+
+A number of visualizations were made using Matplotlib and Seaborn plots like factorplot, bar chart, countplot, boxplot and violinplot to understand the relation of different factors like BMI, age, gender, residence_type, work_type with the stroke variable. The following **insights** were drawn from them - 
       * People with a higher risk of having stroke, were self-employed, in private or government jobs. While those with no work experience and children had lower risk of a stroke. Also, there was a high association of work_type feature with age.
-      * People with a higher risk of stroke are more likely to be smokers or smoked formerly. They also tend to have higher average glucose levels. Also, this pattern can be seen in both the residential settings - Rural as well as Urban.
-      * People who have been diagnosed with hypertension & heart disease, have a higher risk of having stroke.
+      * People with a higher risk of stroke were more likely to be smokers or smoked formerly. They also tend to have higher average glucose levels. Also, this pattern can be seen in both the residential settings - Rural as well as Urban.
+      * People who have been diagnosed with hypertension & heart disease, had a higher risk of having stroke.
       * People with a higher risk of stroke, irrespective of being male or female had slightly higher bmi levels. Although, there were large set of outliers in each case.
-      * People that ever married had a higher risk of having stroke. Also, people with stroke have higher mean age.
+      * People that ever married had a higher risk of having stroke. Also, people with stroke had higher mean age.
  
 Correlation between numerical factors ('age','avg_glucose_level' and 'bmi') and the stroke variable was computed and a Heatmap was made to visualize it.  
-Correlation between categorical factors ('gender','ever_married', 'work_type', 'residence_type','smoking_status') and the stroke variable was also computed using Chi-square test. 
-The following **insights** were drawn -
-      * From the above computation of correlation between stroke and numerical columns we saw that 'age' column had the highest correlation with stroke.
-      * From the Chi-square computations for categorical factors it was found that 'gender' was not correlated to risk of stroke. For all other features, they were correlated with risk of stroke variable.
-      * Regardless of patient’s gender, and where they stayed (Rural or Urban), they had the same likelihood to experience stroke.
-      
+Correlation between categorical factors ('gender','ever_married', 'work_type', 'residence_type','smoking_status') and the stroke variable was also computed using Chi-square test. The following **insights** were drawn from them -
+      * Correlation between stroke and numerical columns showed that 'age' column had the highest correlation with stroke.
+      * Chi-square computations for categorical factors showed that 'gender' was not correlated to risk of stroke. For all other features, they were correlated with risk of stroke variable.
+      * Regardless of patient’s gender, and where they stayed (Rural or Urban), they had the same likelihood to experience stroke.      
  
-* **One-hot Encoding of Categorical Data** - As the stroke prediction dataset contained some categorical factors like work_typem residence_type, gender etc. These were encoded using DictVectorizer to be used further in training different ML models and maing predictions. DictVectorizer helped in transforming lists of feature-value mappings to vectors i.e., feature matrix into dictionaries for training and predicting on subsets. When feature values were strings, this transformer will do a binary one-hot coding. 
+* **One-hot Encoding of Categorical Data** - As the stroke prediction dataset contained some categorical factors like work_type residence_type, gender etc. These were encoded using DictVectorizer to be used further in training different models and making predictions. DictVectorizer helped in transforming lists of feature-value mappings to vectors i.e., feature matrix into dictionaries for training and predicting on subsets. When feature values were strings, this transformer would do a binary one-hot coding. 
 
+* **Feature Importance** - Here, I computed the Mutual information score for all feature columns. It was found that the avg_glucose_level was the most important, while gender was least important feature. I also computed the important features in the dataset for each of the models Decision tree, Random Forest and XGBoost so as to identify how they differed among models.
 
-* **Setting up the validation framework** - Firstly, I split the dataset into training, validation and testing subsets in the ratio of 60:20:20. Then, I defined the feature matrix containing all the factor columns and defined the 'stroke' column as target column. I also ensured that the target column was removed from each of the 3 data subsets.
-* **Feature Importance** - Here, I computed the Mutual information score for all feature columns. It was found that the avg_glucose_level was the most important, while gender was least important feature.
+* **Setting up the validation framework** - Firstly, I split the dataset into training, validation and testing subsets in the ratio of 60:20:20. Then, I defined the feature matrix containing all the factor columns and defined the 'stroke' column as the target variable. I also ensured that the target column was removed from each of the 3 data subsets.
 
-* **Modelling on our dataset** - Once the data was split and pre-processed for machine learning algorithms I implemented different models by training them on the full_train set and predicted on the validation set. The models were evaluated using Classification models and AUC score metrics was used to compare performance. Following were the models used:
+* **Modelling on our dataset** - Once the data was split and pre-processed for machine learning algorithms I implemented different models by training them on the full_train set and made predictions on the validation set. The models were then evaluated using Classification metrics like roc_auc_score, f1_score etc. to compare their performances. Following were the models I used in this project:
       * Logistic Regression
       * Decision Trees for Classification
-      * Random Forest for Classification (using Ensemble learning)
+      * Random Forest for Classification (using Ensemble learning (bagging))
       * XGBoost for Classification (using Gradient boosting)
-
 For each of the model feature importance was done to identify which features contributed most to the predictions. AUC scores were also computed on the validation set.
 
-* **Parameter Tuning of Models** - The parameters for each of the above models were also tuned to find the most optimal parameters. Following were the parameters tuned for each model.
+* **Parameter Tuning of Models** - The parameters for each of the above models were also tuned to find the most optimal parameters. 
+Following were the parameters tuned for each model.
      * Decision Trees for Classification - selecting max_depth , min_samples_leaf and max_features
      * Random Forest for Classification - selecting n_estimators, max_depth, min_samples_leaf, max_features
      * XGBoost for Classification - selecting eta, max_depth, min_child_weight
  
-After tuning the models with different parameters the final models from each type were selected with most optimal paramters. These were as follows:-
+After tuning the models with different parameters the final models from each type were selected with most optimal parameters. These were as follows:-
     * Final Decision Tree Model - max_depth = 5; min_samples_leaf = 10; max_features = 8
     * Final Random Forest Model - max_depth = 5; min_samples_leaf = 50; max_features = 10,; n_estimators = 180
     * Final XGBoost Model -(training for 200 iterations) - eta = 0.1; max_depth = 3; min_child_weight = 20
 
+* **Selecting the Best Model** - Once final models were built next step was choosing between final Decision tree, Random forest and XGBoost for Classification models. This was done by evaluating each of the final models on the validation set and comparing the AUC scores. By doing so, I found that, ***XGBoost for Classification model** gave the best AUC score on validation set hence, it was selected as the **best model for Stroke Prediction dataset**. 
 
-* **Selecting the Best Model** - Once final models were built next step was choosing between final Decision tree, Random forest and XGBoost for Classification models. This was done by evaluating each of the final models on the validation set and comparing the AUC scores. 
+Thereafter, I used this best model to predict on testing set (unseen data) where also it performed fairly close to the validation set scores. Finally, this best model was then saved as a Python script for further deployment as a web service.
 
-We found that, ***XGBoost for Classification model** gave us the best AUC score on validation set hence, it was the **best model for our stroke prediction dataset**.
-
-Thereafter, I used this best model to predict on testing set (unseen data) where also it performed fairly close to validation set scores. Finally, this best model was then saved as a Python script for further deployment as a web service.
-
-
-* **Balancing Imbalanced Classes** - As the stroke prediction dataset contained imbalanced classes I also tried to balance the dataset using SMOTE technique. This was used to oversample the minority class (stroke=1 i.e., those with a risk of having stroke). The decision tree, random forest and XGBoost models were trained on oversampled dataset and predictions made on validation set. AUC scores were computed on all the three models to understand what effect did balancing of data labels have on the model predictions.
-
-Here too the XGBoost for Classification model outperformed the others.
+* **Balancing Imbalanced Classes** - As the stroke prediction dataset contained imbalanced classes additinally I tried to balance the dataset using SMOTE technique. This was used to oversample the minority class (stroke=1 i.e., those with a risk of having stroke). The decision tree, random forest and XGBoost models were trained on oversampled dataset and predictions made on validation set. AUC scores were computed on all the three models to understand what effect did balancing of data labels have on the model predictions.Here too the XGBoost for Classification model outperformed the others.
    
 
 
-### Details about Python Script for Best Model - 
+### Exporting Best Model Notebook to Python script - 
 
 The code for best model i.e., XGBoost for Classification was first saved as a Python Notebook (Final Model Code.ipynb) then saved as a Python script (FinalModeltrain.py) for further deployment as a web service.
 
@@ -115,7 +108,7 @@ Name of Python script used - ***FinalModeltrain.py***
 This above file would be used for training the final model and further deployment in a server. 
 
 Saving and Loading the Stroke Prediction Model - 
-* It contains all the necessary libraries & Python packages for the model like pandas, numpy, scikit-learn, seaborn etc. It contains the parameters used for the training the model. It also has stes about data preparation, data cleaning and formatting like the once we used in Python Notebook for Kaggle dataset. Then it lists the steps to create a validation framework (splitting dataset into 3 subsets, identifying feature matrix and target variables etc.). Thereafter, it performs one-hot encoding using DictVectorizer on data subsets, trains on training or validation subsets and finally lists steps for making predictions. It also performs KFold Cross-Validation on subsets before making predictions.
+* It contains all the necessary libraries & Python packages for the model like pandas, numpy, scikit-learn, seaborn etc. It contains the parameters used for the training the model. It also has steps about data preparation, data cleaning and formatting like the once we used in Python Notebook for Kaggle dataset. Then it lists the steps to create a validation framework (splitting dataset into 3 subsets, identifying feature matrix and target variables etc.). Thereafter, it performs one-hot encoding using DictVectorizer on data subsets, trains on training or validation subsets and finally lists steps for making predictions. It also performs KFold Cross-Validation on subsets before making predictions.
 
 * After training, validation and making model ready for predictions it saves the model to a binary file using the **Pickle** library. This enables, to use the model in future without training and evaluating the code. Here, I have used pickle to make a binary file named ***model.bin***. It contains the one-hot encoder (DictVectorizer) and model details as an array in it.
 
@@ -125,10 +118,9 @@ With unpacking the model and the DictVectorizer here, I would be able to predict
 
 
 Creating a Web service for our Model using Flask - 
-
 Name of Python script used - ***FinalModelpredict.py***
 
-* Here I use the **Flask** library in Python to create a web service. The script used here would be implementing the functionality of prediction to our stroke web service and be making it usable in a development environment. To be able to use the model without running the code firstly, I open and load the previously saved binary file as shown below.
+* Here I use the **Flask** library in Python to create a web service. The script used here would be implementing the functionality of prediction to our stroke web service and would be making it usable in a development environment. To be able to use the model without running the code firstly, I open and load the previously saved binary file as shown below.
 
 ![image](https://user-images.githubusercontent.com/50409210/139581873-4b6058f3-05e6-405d-b2c0-cb0f6f4aa74f.png)
 
@@ -136,7 +128,7 @@ Name of Python script used - ***FinalModelpredict.py***
 
 ![image](https://user-images.githubusercontent.com/50409210/139582818-aed76cc8-a5ef-4727-994f-1cd83c8debc4.png)
 
-The details of a sample new person are provided in JSON format. These details are sent as a POST request to the web service. The web service sends back a response in JSON format which is converted back into a Python dictionary. Finally, a response message is printed based on the stroke decision provided by the model (threshold as 0.55 for stroke decision) for the new person.
+The details of a new 'sample person' are provided in JSON format. These details are sent as a POST request to the web service. The web service sends back a response in JSON format which is converted back into a Python dictionary. Finally, a response message is printed based on the stroke decision provided by the model (threshold as 0.55 for stroke decision) for the new person.
 
 Name of Python script used - ***FinalModelpredicttest.py***
 
