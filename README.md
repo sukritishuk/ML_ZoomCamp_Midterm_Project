@@ -110,12 +110,12 @@ Here too the XGBoost for Classification model outperformed the others.
 
 The code for best model i.e., XGBoost for Classification was first saved as a Python Notebook (Final Model Code.ipynb) then saved as a Python script (FinalModeltrain.py) for further deployment as a web service.
 
-Name of the Python script - ***FinalModeltrain.py***
+Name of the Python script used - ***FinalModeltrain.py***
 
-This above Python script file would be used for training the final model and further deployment in a server. 
+This above file would be used for training the final model and further deployment in a server. 
 
 Saving and Loading the Stroke Prediction Model - 
-* This file contains all the necessary libraries & Python packages for the model like pandas, numpy, scikit-learn, seaborn etc. It contains the parameters used for the training the model. It also has stes about data preparation, data cleaning and formatting like the once we used in Python Notebook for Kaggle dataset. Then it lists the steps to create a validation framework (splitting dataset into 3 subsets, identifying feature matrix and target variables etc.). Thereafter, it performs one-hot encoding using DictVectorizer on data subsets, trains on training or validation subsets and finally lists steps for making predictions. It also performs KFold Cross-Validation on subsets before making predictions.
+* It contains all the necessary libraries & Python packages for the model like pandas, numpy, scikit-learn, seaborn etc. It contains the parameters used for the training the model. It also has stes about data preparation, data cleaning and formatting like the once we used in Python Notebook for Kaggle dataset. Then it lists the steps to create a validation framework (splitting dataset into 3 subsets, identifying feature matrix and target variables etc.). Thereafter, it performs one-hot encoding using DictVectorizer on data subsets, trains on training or validation subsets and finally lists steps for making predictions. It also performs KFold Cross-Validation on subsets before making predictions.
 
 * After training, validation and making model ready for predictions it saves the model to a binary file using the **Pickle** library. This enables, to use the model in future without training and evaluating the code. Here, I have used pickle to make a binary file named ***model.bin***. It contains the one-hot encoder (DictVectorizer) and model details as an array in it.
 
@@ -125,7 +125,10 @@ With unpacking the model and the DictVectorizer here, I would be able to predict
 
 
 Creating a Web service for our Model using Flask - 
-* Firstly, here I use the **Flask** library in Python to create a web service. In this section we would be implementing the functionality of prediction to our stroke web service and be making it usable in a development environment. To be able to use the model without running the code, I open and load the previously saved binary file as shown below.
+
+Name of the Python script used - ***FinalModelpredict.py***
+
+* Here I use the **Flask** library in Python to create a web service. The script used here would be implementing the functionality of prediction to our stroke web service and be making it usable in a development environment. To be able to use the model without running the code firstly, I open and load the previously saved binary file as shown below.
 
 ![image](https://user-images.githubusercontent.com/50409210/139581873-4b6058f3-05e6-405d-b2c0-cb0f6f4aa74f.png)
 
@@ -133,7 +136,7 @@ Creating a Web service for our Model using Flask -
 
 ![image](https://user-images.githubusercontent.com/50409210/139582818-aed76cc8-a5ef-4727-994f-1cd83c8debc4.png)
 
-Here I made a simple web server that predicts the risk of stroke for every new person. When I ran the app I got a warning that this sevrer is not a WGSI server, hence not suitable for production environmnets. To fix this issue for my Windows machine, I used the library **waitress** to run the waitress WSGI server. Thus, this fix helped me make a production server that predicts the risk of stroke for new customers.
+Here I made a simple web server that predicts the risk of stroke for every new person. When I ran the app I got a warning that this server is not a WGSI server, hence not suitable for production environmnets. To fix this issue for my Windows machine, I used the library **waitress** to run the waitress WSGI server. Thus, this fix helped me make a production server that predicts the risk of stroke for new customers.
 
 
 Creating a Python virtual environment using Pipenv - 
@@ -168,40 +171,40 @@ In this section I have summarized the steps for running the best model after exp
 Below are the steps in this regard:-
 * Changing the directory to the desired one using the command prompt.
 * Running the train script (FinalModeltrain.py) used for training the best model using command ----> *python FinalModeltrain.py* 
-* Installing flask library using command -----> *pip install flask
-* Running the predict script (FinalModelpredict.py) used for loading the best model using command ----> *python FinalModelpredict.py
-* Installing waitress library (for Windows) using command ------> *pip install waitress
-* Telling waitress service where the stroke predict app is using command ----> *waitress-serve --listen=127.0.0.1:5000 FinalModelpredict:app
+* Installing flask library using command -----> *pip install flask*
+* Running the predict script (FinalModelpredict.py) used for loading the best model using command ----> *python FinalModelpredict.py*
+* Installing waitress library (for Windows) using command ------> *pip install waitress*
+* Telling waitress service where the stroke predict app is using command ----> *waitress-serve --listen=127.0.0.1:5000 FinalModelpredict:app*
 * Running the script (in a new cmd terminal) with new sample person details (FinalModelpredicttest.py) for testing the best model after deployment 
-  using command ------> *python FinalModelpredicttest.py
+  using command ------> *python FinalModelpredicttest.py*
 
   This would give the stroke prediction and probability of stroke for the new person (unseen data) input detail.
 
-* Installing the pipenv library for creating virtual environment using command -----> *pip install pipenv  
-* Installing other dependent libraries for stroke prediction model using command -----> *pipenv install numpy scikit-learn==0.24.2 flask pandas requests xgboost
-* Installing python 3.8 version to match python version in the docker image and that in Pipfile using command -----> *pipenv install --python 3.8
+* Installing the pipenv library for creating virtual environment using command -----> *pip install pipenv* 
+* Installing other dependent libraries for stroke prediction model using command -----> *pipenv install numpy scikit-learn==0.24.2 flask pandas requests xgboost*
+* Installing python 3.8 version to match python version in the docker image and that in Pipfile using command -----> *pipenv install --python 3.8*
   
   This would update our Pipfile and Pipfile.lock with all library details.
   
-* Next, getting into the newly created virtual environment using command ----> *pipenv shell
-* Now running the script with sample person details using command ----> *python FinalModelpredicttest.py
+* Next, getting into the newly created virtual environment using command ----> *pipenv shell*
+* Now running the script with sample person details using command ----> *python FinalModelpredicttest.py*
 
   This launches pipenv shell first then runs waitress service. It results with predictions and probabilities from our model.
 
-* Changing the directory to the desired one using a new cmd terminal. Downloading a desired Docker Python image (3.8.12-slim) using command ----> *docker run -it --rm python:3.8.12-slim
-* Getting into this image using command ----> *docker run -it --rm --entrypoint=bash python:3.8.12-slim
-* Building the Docker image with tag zoomcamp-test (while still within the virtual env shell) using command -----> *docker build -t zoomcamp-test .
-* Running the image once built using command ----> *docker run -it --rm --entrypoint=bash zoomcamp-test
+* Changing the directory to the desired one using a new cmd terminal. Downloading a desired Docker Python image (3.8.12-slim) using command ----> *docker run -it --rm   python:3.8.12-slim*
+* Getting into this image using command ----> *docker run -it --rm --entrypoint=bash python:3.8.12-slim*
+* Building the Docker image with tag zoomcamp-test (while still within the virtual env shell) using command -----> *docker build -t zoomcamp-test .*
+* Running the image once built using command ----> *docker run -it --rm --entrypoint=bash zoomcamp-test*
   
-* This brings us inside the app terminal where we get a list of files in app terminal using command -----> *ls
-* Then launching the waitress service within app terminal using commnad -----> *waitress-serve --listen=127.0.0.1:5000 FinalModelpredict:app
-* Thereafter, mapping the port in our container (5000) to the port in our host machine (5000) using command ----> *docker run -it --rm -p 5000:5000 zoomcamp-test
+* This brings us inside the app terminal where we get a list of files in app terminal using command -----> *ls*
+* Then launching the waitress service within app terminal using commnad -----> *waitress-serve --listen=127.0.0.1:5000 FinalModelpredict:app*
+* Thereafter, mapping the port in our container (5000) to the port in our host machine (5000) using command ----> *docker run -it --rm -p 5000:5000 zoomcamp-test*
   
   Both the above 2 steps would launch our waitress service giving below output:-
-  *INFO: waitress serving on http://0.0.0.0:5000
+  *INFO: waitress serving on http://0.0.0.0:5000*
   
-* Then in fresh cmd terminal changing the directory to the desired one and getting into the virtual environment created earlier using command ----> *pipenv shell
-* Finally, running the script with sample person details using command ------> *python FinalModelpredicttest.py
+* Then in fresh cmd terminal changing the directory to the desired one and getting into the virtual environment created earlier using command ----> *pipenv shell*
+* Finally, running the script with sample person details using command ------> *python FinalModelpredicttest.py*
 
 This results in giving us stroke predictions and probabilities from our model now deployed locally using Docker comtainer.
 
