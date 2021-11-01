@@ -55,7 +55,7 @@ Below are the important components from the Python Notebook used to load data, p
 *  **Data Cleaning and Formatting** - I cleaned the dataset by formatting the column to lower case, imputing missing values with mean or mode of values and dropping irrelevant columns (like 'id'). I also separated numerical and categorical variable columns. 
 
 * **Exploratory Data Analysis (EDA)** - Then, I performed EDA using Python libraries like Matplotlib, Pandas and Seaborn to analyze data and visualize key components to answer important questions like the following:-
-      ****Who are at risk of a stroke? or What are the most highly correlated numerical or categorical features with stroke?
+      ***Who are at risk of a stroke? or What are the most highly correlated numerical or categorical features with stroke?***
 
 ![image](https://user-images.githubusercontent.com/50409210/139699132-65783fac-6657-42b5-a0b5-cbbaa38d6654.png)
 
