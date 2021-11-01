@@ -137,6 +137,8 @@ Saving and Loading the Stroke Prediction Model -
 With unpacking the model and the DictVectorizer here, I would be able to predict the risk of stroke for any new input values (sample_person) or unseen data without training a new model by re-running the code.
 
 
+
+
 Creating a Web service for our Model using Flask - 
 
 Name of Python script used - ***FinalModelpredict.py***
