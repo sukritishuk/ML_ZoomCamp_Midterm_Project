@@ -207,7 +207,7 @@ This Docker image file would have dependencies for my project.
 
 ## Instructions about Running the Project:
 
-In this section I have summarized the steps for running the Best model  (XGBoost for Classification) for my project after exporting it from Notebook to a script and deploying it locally as an app using Docker.
+In this section I have summarized the steps for running the Best model  (**XGBoost for Classification**) for my project after exporting it from Notebook to a script and deploying it locally as an app using Docker.
 
 Below are the steps in this regard:-
 * Changing the directory to the desired one using the command prompt terminal.
@@ -248,5 +248,7 @@ Below are the steps in this regard:-
 * Then in fresh cmd terminal changing the directory to the desired one and getting into the virtual environment created earlier using command ----> *pipenv shell*
 * Finally, running the script with sample person details using command ------> *python FinalModelpredicttest.py*
 
-This results in giving us stroke predictions and probabilities from our model. Now our Stroke Prediction project has been deployed locally using Docker comtainer.
+This results in giving us stroke predictions and probabilities from our model for the new sample person as input. 
+
+At last our Stroke Prediction project has been deployed locally using Docker comtainer.
 
