@@ -252,5 +252,5 @@ This results in giving us stroke predictions and probabilities from our model fo
 
 ![image](https://user-images.githubusercontent.com/50409210/139595043-05b9117a-8af1-4fc0-81ab-3775d34a5cb1.png)
 
-At last our Stroke Prediction project has been deployed locally using Docker comtainer.
+At last our Stroke Prediction project has been deployed locally using Docker container.
 
