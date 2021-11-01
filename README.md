@@ -85,11 +85,13 @@ Regardless of patient’s gender, and where they stayed (Rural or Urban), they h
 
 * **Setting up the validation framework** - Firstly, I split the dataset into training, validation and testing subsets in the ratio of 60:20:20. Then, I defined the feature matrix containing all the factor columns and defined the 'stroke' column as the target variable. I also ensured that the target column was removed from each of the 3 data subsets.
 
-* **Model Selection & Evaluation** - Once the data was split and pre-processed for machine learning algorithms I implemented different models by training them on the full_train set and made predictions on the validation set. The models were then evaluated using Classification metrics like roc_auc_score, f1_score etc. to compare their performances. Following were the models I used in this project:
+* **Model Selection & Evaluation** - Once the data was split and pre-processed for machine learning algorithms I implemented different models by training them on the full_train set and made predictions on the validation set. The models were then evaluated using Classification metrics like roc_auc_score, f1_score etc. to compare their performances. 
+
+Following were the different modelling algorithms I used in this project:
 
       * Logistic Regression
       * Decision Trees for Classification
-      * Random Forest for Classification (using Ensemble learning (bagging))
+      * Random Forest for Classification (using Ensemble learning, bagging)
       * XGBoost for Classification (using Gradient boosting)
       
 For each of the model feature importance was done to identify which features contributed most to the predictions. AUC scores were also computed on the validation set.
