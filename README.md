@@ -127,7 +127,7 @@ Name of Python script used - ***FinalModeltrain.py***
 
 This above file would be used for training the final model and further deployment in a server. 
 
-Saving and Loading the Stroke Prediction Model - 
+**Saving and Loading the Stroke Prediction Model** - 
 * It contains all the necessary libraries & Python packages for the model like pandas, numpy, scikit-learn, seaborn etc. It contains the parameters used for the training the model. It also has steps about data preparation, data cleaning and formatting like the once we used in Python Notebook for Kaggle dataset. Then it lists the steps to create a validation framework (splitting dataset into 3 subsets, identifying feature matrix and target variables etc.). Thereafter, it performs one-hot encoding using DictVectorizer on data subsets, trains on training or validation subsets and finally lists steps for making predictions. It also performs KFold Cross-Validation on subsets before making predictions.
 
 * After training, validation and making model ready for predictions it saves the model to a binary file using the **Pickle** library. This enables, to use the model in future without training and evaluating the code. Here, I have used pickle to make a binary file named ***model.bin***. It contains the one-hot encoder (DictVectorizer) and model details as an array in it.
@@ -140,7 +140,7 @@ With unpacking the model and the DictVectorizer here, I would be able to predict
 
 ### Putting the Model into a Web Service and deploying it locally with Docker - 
 
-Creating a Web service for our Model using Flask - 
+**Creating a Web service for our Model using Flask** - 
 
 Name of Python script used - ***FinalModelpredict.py***
 
@@ -161,7 +161,7 @@ Name of Python script used - ***FinalModelpredicttest.py***
 As shown above, I made a simple web server that predicts the risk of stroke for every new person. When I ran the app I got a warning that this server is not a WGSI server, hence not suitable for production environmnets. To fix this issue for my Windows machine, I used the library **waitress** to run the waitress WSGI server. Thus, this fix helped me make a production server that predicts the risk of stroke for new customers.
 
 
-Creating a Python virtual environment using Pipenv - 
+**Creating a Python virtual environment using Pipenv** - 
 
 Names of files used - ***Pipfile*** and ***Pipfile.lock***
 
@@ -177,7 +177,7 @@ Pipenv command created two files named Pipfile and Pipfile.lock. Both these file
 * Next I installed and used the libraries such as waitress like before.
 
 
-Environment Management using Containerization in Docker - 
+**Environment Management using Containerization in Docker** - 
 
 Name of file used - ***Dockerfile***
 
