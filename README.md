@@ -43,7 +43,7 @@ Following steps were used in preparing the data from the source:-
 
 
 
-### EDA and Model Training - 
+## Exploratory Data Analysis (EDA), Feature Correlation & Importance: 
 
 Name of the Python Notebook - ***ML ZoomCamp - Midterm Project.ipynb***
 
@@ -83,6 +83,11 @@ Regardless of patient’s gender, and where they stayed (Rural or Urban), they h
 
 * **Feature Importance** - Here, I computed the Mutual information score for all feature columns. It was found that the avg_glucose_level was the most important, while gender was least important feature. I also computed the important features in the dataset for each of the models Decision tree, Random Forest and XGBoost so as to identify how they differed among models.
 
+
+
+## Model Selection and Tuning & Evaluation:
+
+
 * **Setting up the validation framework** - Firstly, I split the dataset into training, validation and testing subsets in the ratio of 60:20:20. Then, I defined the feature matrix containing all the factor columns and defined the 'stroke' column as the target variable. I also ensured that the target column was removed from each of the 3 data subsets.
 
 * **Model Selection & Evaluation** - Once the data was split and pre-processed for machine learning algorithms I implemented different models by training them on the full_train set and made predictions on the validation set. The models were then evaluated using Classification metrics like roc_auc_score, f1_score etc. to compare their performances. 
@@ -115,11 +120,14 @@ After tuning the models with different parameters the final models from each typ
 
 Thereafter, I used this best model to predict on testing set (unseen data) where also it performed fairly close to the validation set scores. Finally, this best model was then saved as a Python script for further deployment as a web service.
 
+
+## Dealing with Imbalanced Classes:
+
 * **Balancing Imbalanced Classes** - As the stroke prediction dataset contained imbalanced classes additinally I tried to balance the dataset using SMOTE technique. This was used to oversample the minority class (stroke=1 i.e., those with a risk of having stroke). The decision tree, random forest and XGBoost models were trained on oversampled dataset and predictions made on validation set. AUC scores were computed on all the three models to understand what effect did balancing of data labels have on the model predictions.Here too the XGBoost for Classification model outperformed the others.
    
 
 
-### Exporting Best Model Notebook to Python script - 
+## Exporting Best Model Notebook to Python script - 
 
 The code for best model i.e., XGBoost for Classification was first saved as a Python Notebook (Final Model Code.ipynb) then saved as a Python script (FinalModeltrain.py) for further deployment as a web service.
 
