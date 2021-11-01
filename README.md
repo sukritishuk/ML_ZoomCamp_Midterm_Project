@@ -49,19 +49,25 @@ Name of the Python Notebook - ***ML ZoomCamp - Midterm Project.ipynb***
 
 Below are the important components from the Python Notebook used to load data, perform EDA, train multiple models and evaluate them to select the best model:-
 * **Data Loading** - Firstly, I loaded all the basic libraries used in the project. Then, I imported the data from the .csv file into a Pandas DataFrame and got a snapshot of data (like exploring the unique values in each column of dataset, getting a statistical summary of dataset).
+
+![image](https://user-images.githubusercontent.com/50409210/139657709-7c6ded3c-9b3a-4c35-86db-c4e1a33a67cb.png)
+
 *  **Data Cleaning and Formatting** - I cleaned the dataset by formatting the column to lower case, imputing missing values with mean or mode of values and dropping irrelevant columns (like 'id'). I also separated numerical and categorical variable columns. 
 
 * **Exploratory Data Analysis (EDA)** - Then, I performed EDA using Python libraries like Matplotlib, Pandas and Seaborn to analyze data and visualize key components to answer important questions like the following:-
       ****Who are at risk of a stroke? or What are the most highly correlated numerical or categorical features with stroke?
 
+![image](https://user-images.githubusercontent.com/50409210/139699132-65783fac-6657-42b5-a0b5-cbbaa38d6654.png)
+
 A number of visualizations were made using Matplotlib and Seaborn plots like factorplot, bar chart, countplot, boxplot and violinplot to understand the relation of different factors like BMI, age, gender, residence_type, work_type with the stroke variable. The following **insights** were drawn from them - 
       * People with a higher risk of having stroke, were self-employed, in private or government jobs. While those with no work experience and children had lower risk of a stroke. Also, there was a high association of work_type feature with age.
       * People with a higher risk of stroke were more likely to be smokers or smoked formerly. They also tend to have higher average glucose levels. Also, this pattern can be seen in both the residential settings - Rural as well as Urban.
-      * People who have been diagnosed with hypertension & heart disease, had a higher risk of having stroke.
       * People with a higher risk of stroke, irrespective of being male or female had slightly higher bmi levels. Although, there were large set of outliers in each case.
       * People that ever married had a higher risk of having stroke. Also, people with stroke had higher mean age.
  
 Correlation between numerical factors ('age','avg_glucose_level' and 'bmi') and the stroke variable was computed and a Heatmap was made to visualize it.  
+![image](https://user-images.githubusercontent.com/50409210/139699291-e5d7de53-3819-44db-b817-05708bd8a367.png)
+
 Correlation between categorical factors ('gender','ever_married', 'work_type', 'residence_type','smoking_status') and the stroke variable was also computed using Chi-square test. The following **insights** were drawn from them -
       * Correlation between stroke and numerical columns showed that 'age' column had the highest correlation with stroke.
       * Chi-square computations for categorical factors showed that 'gender' was not correlated to risk of stroke. For all other features, they were correlated with risk of stroke variable.
@@ -73,12 +79,15 @@ Correlation between categorical factors ('gender','ever_married', 'work_type', '
 
 * **Setting up the validation framework** - Firstly, I split the dataset into training, validation and testing subsets in the ratio of 60:20:20. Then, I defined the feature matrix containing all the factor columns and defined the 'stroke' column as the target variable. I also ensured that the target column was removed from each of the 3 data subsets.
 
-* **Modelling on our dataset** - Once the data was split and pre-processed for machine learning algorithms I implemented different models by training them on the full_train set and made predictions on the validation set. The models were then evaluated using Classification metrics like roc_auc_score, f1_score etc. to compare their performances. Following were the models I used in this project:
+* **Model Selection & Evaluation** - Once the data was split and pre-processed for machine learning algorithms I implemented different models by training them on the full_train set and made predictions on the validation set. The models were then evaluated using Classification metrics like roc_auc_score, f1_score etc. to compare their performances. Following were the models I used in this project:
       * Logistic Regression
       * Decision Trees for Classification
       * Random Forest for Classification (using Ensemble learning (bagging))
       * XGBoost for Classification (using Gradient boosting)
 For each of the model feature importance was done to identify which features contributed most to the predictions. AUC scores were also computed on the validation set.
+
+![image](https://user-images.githubusercontent.com/50409210/139699504-2deae157-1877-4df0-b41b-887ac8923e79.png)
+
 
 * **Parameter Tuning of Models** - The parameters for each of the above models were also tuned to find the most optimal parameters. 
 Following were the parameters tuned for each model.
@@ -141,11 +150,14 @@ Creating a Python virtual environment using Pipenv -
 
 Names of files used - ***Pipfile*** and ***Pipfile.lock***
 
-Virtual environments can help solve library version conflictions in each machine and manage the dependencies for production environments. I used the **Pipenv** library to create a virtual environment for my Stroke Prediction project. This was done using the following steps:-
+Virtual environments can help solve library version conflictions in each machine and manage the dependencies for production environments. I used the **Pipenv** library to create a virtual environment for my Stroke Prediction project. 
 
-* Firstly, I installed pipenv library using pip install pipenv. Then, I installed all the necessary libraries for my project in the new virtual environment like numpy, flask, pandas (also specifying exact versions in some cases) using pipenv command like, pipenv install numpy sklearn==0.24.1 flask. Using pipenv command created two files named Pipfile and Pipfile.lock. Both these files contained library-related details, version names and hash files. If I want to run the project in another machine, I can easily install the libraries using command pipenv install, which would look into Pipfile and Pipfile.lock to install the libraries with specified version suitable for my project.
+This was done using the following steps:-
+* Firstly, I installed pipenv library using *pip install pipenv*. Then, I installed all the necessary libraries for my project in the new virtual environment like numpy, flask, pandas (also specifying exact versions in some cases) using pipenv command like, *pipenv install numpy sklearn==0.24.1 flask*. 
 
-* After installing the required libraries I can run the project in the virtual environment with pipenv shell command. This will go to the virtual environment's shell and then any command I run will use the virtual environment's libraries.
+Pipenv command created two files named Pipfile and Pipfile.lock. Both these files contain library-related details, version names and hash files. If I want to run the project in another machine, I can easily install the libraries using command *pipenv install*, which would look into Pipfile and Pipfile.lock to install the libraries with specified version suitable for my project.
+
+* After installing the required libraries I can run the project in the virtual environment with *pipenv shell* command. This will go to the virtual environment's shell and then any command I run will use the virtual environment's libraries.
 
 * Next I installed and used the libraries such as waitress like before.
 
@@ -154,33 +166,34 @@ Environment Management using Containerization in Docker -
 
 Name of file used - ***Dockerfile***
 
-Docker allows to separate or isolate my project from any system machine and enables running it smoothly on any machine using a container. 
-* Firstly, I had to build or make a Docker image. I used a Python Docker image from Docker website[https://hub.docker.com/_/python]. 
+Docker allows to separate or isolate my project from any system machine and enables running it smoothly on any machine using a container. To use Docker after installing Docker Desktop for Windows I had to perform the following steps:- 
+* Firstly, I had to build a Docker image. I used a Python Docker image from the Docker website[https://hub.docker.com/_/python]. 
 
-This Docker image file had dependencies for my project. 
+This Docker image file would have dependencies for my project. 
 ![image](https://user-images.githubusercontent.com/50409210/139591380-10ffb4c1-263f-4509-a1b4-993c0d7c67ed.png)
 
-* After creating the Dockerfile and writing the settings in it, I built it and specified the name zoomcamp-test for this Dockerfile, using the command below:
-     *docker build -t zoomcamp-test .
-* Then, the port 5000 of the Docker was mapped to 5000 port of my machine and the below command was executed:
-     *docker run -it --rm -p 5000:5000 zoomcamp-test
+* After creating the Dockerfile and writing the settings in it, I built it and specified the tag name *zoomcamp-test* for this Dockerfile, using the command below:
+     *docker build -t zoomcamp-test .*
+* Thereafter, running the image once built and launching waitress service using command - *docker run -it --rm --entrypoint=bash zoomcamp-test*
+* Mapping the port 5000 of the Docker to 5000 port of my machine for successful run of project app using Docker container using the below command:
+     *docker run -it --rm -p 5000:5000 zoomcamp-test*
  
  This finally deployed my stroke prediction app inside a Docker container.
 
 
 
-## Instructions on the Running the Project:
+## Instructions about Running the Project:
 
-In this section I have summarized the steps for running the best model after exporting it from Notebook to a script and thereafter deploying it locally as an app using Docker.
+In this section I have summarized the steps for running the Best model  (XGBoost for Classification) for my project after exporting it from Notebook to a script and deploying it locally as an app using Docker.
 
 Below are the steps in this regard:-
 * Changing the directory to the desired one using the command prompt terminal.
-* Running the train script (FinalModeltrain.py) used for training the best model using command ----> *python FinalModeltrain.py* 
+* Running the train script (*FinalModeltrain.py*) used for training the best model using command ----> *python FinalModeltrain.py* 
 * Installing flask library using command -----> *pip install flask*
-* Running the predict script (FinalModelpredict.py) used for loading the best model using command ----> *python FinalModelpredict.py*
+* Running the predict script (*FinalModelpredict.py*) used for loading the best model using command ----> *python FinalModelpredict.py*
 * Installing waitress library (for Windows) using command ------> *pip install waitress*
 * Telling waitress service where the stroke predict app is using command ----> *waitress-serve --listen=127.0.0.1:5000 FinalModelpredict:app*
-* Running the script (in a new cmd terminal) with new sample person details (FinalModelpredicttest.py) for testing the best model after deployment 
+* Running the script (in a new cmd terminal) with new sample person details (*FinalModelpredicttest.py*) for testing the best model after deployment 
   using command ------> *python FinalModelpredicttest.py*
 
   This would give the stroke prediction and probability of stroke for the new person (unseen data) input detail.
@@ -196,9 +209,9 @@ Below are the steps in this regard:-
 
   This launches pipenv shell first then runs waitress service. It results with predictions and probabilities from our model.
 
-* Changing the directory to the desired one using a new cmd terminal. Downloading a desired Docker Python image (3.8.12-slim) using command ----> *docker run -it --rm   python:3.8.12-slim*
+* Changing the directory to the desired one using a new cmd terminal. Downloading a desired Docker Python image (*3.8.12-slim*) using command ----> *docker run -it --rm   python:3.8.12-slim*
 * Getting into this image using command ----> *docker run -it --rm --entrypoint=bash python:3.8.12-slim*
-* Building the Docker image with tag zoomcamp-test (while still within the virtual env shell) using command -----> *docker build -t zoomcamp-test .*
+* Building the Docker image with tag *zoomcamp-test* (while still within the virtual env shell) using command -----> *docker build -t zoomcamp-test .*
 * Running the image once built using command ----> *docker run -it --rm --entrypoint=bash zoomcamp-test*
   
 * This brings us inside the app terminal where we get a list of files in app terminal using command -----> *ls*
@@ -212,12 +225,5 @@ Below are the steps in this regard:-
 * Then in fresh cmd terminal changing the directory to the desired one and getting into the virtual environment created earlier using command ----> *pipenv shell*
 * Finally, running the script with sample person details using command ------> *python FinalModelpredicttest.py*
 
-This results in giving us stroke predictions and probabilities from our model now deployed locally using Docker comtainer.
-
-
-  
-  
-
-
-## Visualizations & Insights Drawn 
+This results in giving us stroke predictions and probabilities from our model. Now our Stroke Prediction project has been deployed locally using Docker comtainer.
 
