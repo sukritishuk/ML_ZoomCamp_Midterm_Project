@@ -106,6 +106,7 @@ Following were the parameters tuned for each model.
      * XGBoost for Classification - selecting eta, max_depth, min_child_weight
  
 After tuning the models with different parameters the final models from each type were selected with most optimal parameters. These were as follows:-
+
     * Final Decision Tree Model - max_depth = 5; min_samples_leaf = 10; max_features = 8
     * Final Random Forest Model - max_depth = 5; min_samples_leaf = 50; max_features = 10,; n_estimators = 180
     * Final XGBoost Model -(training for 200 iterations) - eta = 0.1; max_depth = 3; min_child_weight = 20
