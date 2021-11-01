@@ -138,6 +138,7 @@ With unpacking the model and the DictVectorizer here, I would be able to predict
 
 
 
+### Putting the Model into a Web Service and deploying it locally with Docker - 
 
 Creating a Web service for our Model using Flask - 
 
