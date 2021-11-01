@@ -60,11 +60,13 @@ Below are the important components from the Python Notebook used to load data, p
 
 ![image](https://user-images.githubusercontent.com/50409210/139699132-65783fac-6657-42b5-a0b5-cbbaa38d6654.png)
 
-A number of visualizations were made using Matplotlib and Seaborn plots like factorplot, bar chart, countplot, boxplot and violinplot to understand the relation of different factors like BMI, age, gender, residence_type, work_type with the stroke variable. The following **insights** were drawn from them - 
-      * People with a higher risk of having stroke, were self-employed, in private or government jobs. While those with no work experience and children had lower risk of a stroke. Also, there was a high association of work_type feature with age.
-      * People with a higher risk of stroke were more likely to be smokers or smoked formerly. They also tend to have higher average glucose levels. Also, this pattern can be seen in both the residential settings - Rural as well as Urban.
-      * People with a higher risk of stroke, irrespective of being male or female had slightly higher bmi levels. Although, there were large set of outliers in each case.
-      * People that ever married had a higher risk of having stroke. Also, people with stroke had higher mean age.
+A number of visualizations were made using Matplotlib and Seaborn plots like factorplot, bar chart, countplot, boxplot and violinplot to understand the relation of different factors like BMI, age, gender, residence_type, work_type with the stroke variable. 
+
+The following **insights** were drawn from them - 
+* People with a higher risk of having stroke, were self-employed, in private or government jobs. While those with no work experience and children had lower risk of a stroke. Also, there was a high association of work_type feature with age.
+* People with a higher risk of stroke were more likely to be smokers or smoked formerly. They also tend to have higher average glucose levels. Also, this pattern can be seen in both the residential settings - Rural as well as Urban.
+* People with a higher risk of stroke, irrespective of being male or female had slightly higher bmi levels. Although, there were large set of outliers in each case.
+* People that ever married had a higher risk of having stroke. Also, people with stroke had higher mean age.
  
 Correlation between numerical factors ('age','avg_glucose_level' and 'bmi') and the stroke variable was computed and a Heatmap was made to visualize it.  
 ![image](https://user-images.githubusercontent.com/50409210/139699291-e5d7de53-3819-44db-b817-05708bd8a367.png)
