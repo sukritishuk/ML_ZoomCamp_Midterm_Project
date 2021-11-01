@@ -138,6 +138,7 @@ With unpacking the model and the DictVectorizer here, I would be able to predict
 
 
 Creating a Web service for our Model using Flask - 
+
 Name of Python script used - ***FinalModelpredict.py***
 
 * Here I use the **Flask** library in Python to create a web service. The script used here would be implementing the functionality of prediction to our stroke web service and would be making it usable in a development environment. To be able to use the model without running the code firstly, I open and load the previously saved binary file as shown below.
