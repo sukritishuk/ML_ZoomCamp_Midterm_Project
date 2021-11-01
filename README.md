@@ -76,7 +76,8 @@ Correlation between categorical factors ('gender','ever_married', 'work_type', '
 The following **insights** were drawn from them -
 * Correlation between stroke and numerical columns showed that 'age' column had the highest correlation with stroke.
 * Chi-square computations for categorical factors showed that 'gender' was not correlated to risk of stroke. For all other features, they were correlated with risk of stroke variable.
-* Regardless of patient’s gender, and where they stayed (Rural or Urban), they had the same likelihood to experience stroke.      
+
+Regardless of patient’s gender, and where they stayed (Rural or Urban), they had the same likelihood to experience stroke.      
  
 * **One-hot Encoding of Categorical Data** - As the stroke prediction dataset contained some categorical factors like work_type residence_type, gender etc. These were encoded using DictVectorizer to be used further in training different models and making predictions. DictVectorizer helped in transforming lists of feature-value mappings to vectors i.e., feature matrix into dictionaries for training and predicting on subsets. When feature values were strings, this transformer would do a binary one-hot coding. 
 
