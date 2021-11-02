@@ -10,12 +10,9 @@ Stroke as a medical condition can cause severe health implications and even lead
 
 Firstly, I prepared my data by cleaning and formatting the dataset. Then, I used Exploratory Data Analysis techniques in Python to visualize relationships between different factors in the dataset like BMI, Hypertension, Heart disease or Smoking etc. and their influence on the risk of strokes. I also analyzed the importance of features influencing stroke in patients.   Once my data was prepared, I started pre-processing it for use in different Supervised Machine Learning models. This involved splitting the data into subsets, identifying & segregating the feature matrix from the target variable and one-hot encoding of categorical variables in datasets. Since my dataset was used to predict strokes, I used Binary Classification models from Python to train on my datasets. After this, I trained multiple Binary Classification models both Regression-based & Tree-based. Each of the model was evaluated using classification metrics AUC score and their performances compared. Thereafter the models were tuned using different parameters to find the most optimal parameters.Lastly, multiple final models with optimal parameters were run to select the Best Model for making stroke predictions on this dataset.
 
-Once the best model for my dataset was selected its code was exported from a Python Notebook into a Python script. Thereafter, this model was put into a web service using Flask. A Python virtual environment was created using Pipenv containing all the necessary dependencies and packages for running the model. Then the model was deployed locally using Docker as a containerized service.  
+Once the best model for my dataset was selected its code was exported from a Python Notebook into a Python script. Thereafter, this model was put into a web service using Flask. A Python virtual environment was created using Pipenv containing all the necessary dependencies and packages for running the model. Then the model was deployed locally using Docker as a containerized service. Then this locally deployed model was used to predict the risk of stroke for a new 'sample person' with unseen data as input. The model gave as output, details regarding the risk of stroke (as True or False) and probability of stroke for a 'sample person' as inputs to the model. 
 
-In the end, this locally deployed model was used to predict the risk of stroke for a new 'sample person' with unseen data as input. The model gave as output (shown below) details about the risk of stroke or not as True or False and the probability of stroke for this 'sample person' as a predictions made by the model deployed.
-
-![image](https://user-images.githubusercontent.com/50409210/139595043-05b9117a-8af1-4fc0-81ab-3775d34a5cb1.png)
-
+Lastly, I also tried deploying the stroke prediction service to the cloud using AWS Elastic Beanstalk. This cloud environment created for the stroke prediction service was then used to make predictions for a new 'sample person' as input.
 
 
 ## Data Sources and Preparation: 
@@ -39,7 +36,8 @@ Following steps were used in preparing the data from the source:-
 * Parameter of the models were tuned to improve their performance and select the most optimal parameters for each model.
 * **Cross-Validation** techniques like **K-Fold** was used which split the dataset into ‘k’ number of subsets, then used k-1 subsets to train the model and used the last subset as a validation set to test the model. Then the score of the model on each fold was averaged to evaluate the performance of the model.
 * To address the problem of Imbalanced classes in my dataset I oversampled the minority class using **Synthetic Minority Oversampling Technique (SMOTE)**. Data augmentation was done to oversample the minority class label (stroke=1 ie., those having a risk of stroke). Although, this technique was only used additionally on my dataset just to assess its impact. Different models were re-evaluated on this balanced dataset using AUC score to see any improvements or decline in their performance.
-* Finally after evaluating all the different models and their performances the best model was chosen as **XGBoost for Classification**. This model with its optimal parameter was used hereafter (exported from Python notebook into a Python script) in a Web service using **Flask** and in local deployment using **Docker**.
+* Then after evaluating all the different models and their performances the best model was chosen as **XGBoost for Classification**. This model with its optimal parameter was used hereafter (exported from Python notebook into a Python script) in a Web service using **Flask** and deployed locally using **Docker**.
+* Lastly, the Stroke Prediction service was also deployed in cloud using **AWS Elastic Beanstalk**. For this the Elastic Beanstalk command-line interface (CLI) was added as a development dependency only for the project. Then an environment for the stroke prediction service was created in AWS which successfully launches the environment and provides a public url to reach the application. This url is finally used to make stroke-related predictions about the new 'sample person' details provided as input. 
 
 
 
@@ -253,4 +251,38 @@ This results in giving us stroke predictions and probabilities from our model fo
 ![image](https://user-images.githubusercontent.com/50409210/139595043-05b9117a-8af1-4fc0-81ab-3775d34a5cb1.png)
 
 At last our Stroke Prediction project has been deployed locally using Docker container.
+
+
+
+**Cloud Deployment of Stroke Prediction Service using AWS Elastic Beanstalk** -
+
+Once my Stroke prediction was deloyed locally I also tried to deploy it to the cloud using AWS Elastic Beanstalk. This was done using a special utility Elastic Beanstalk command-line interface (CLI).
+
+Following steps were undertaken in this regard:-
+
+* Firstly, the CLI written in Python, was installed and added as a development dependency (using pipenv) only for the project using command ---> *pipenv install awsebcli --dev*
+* Then, I entered into the my virtual environment using command -----> *pipenv shell* 
+* After this, I checked the version for Elastic Beanstalk available using CLI using commmand -----> *eb --version*
+* Next, we initialize the Docker-based stroke-serving platform using command -----> *eb init -p docker stroke-serving*
+* Now we first test our application locally sby specifying the port 5000 using command -----> *eb local run --port 5000*. It will first build an image and then run the container. 
+
+* Then we make predictions about new 'sample customer' using command as earlier -----> *python FinalModelpredicttest.py*
+![image](https://user-images.githubusercontent.com/50409210/139911782-c07e2ca9-30f6-4f91-9f42-cb50216e14a5.png)
+* Now, we create the stroke-serving environment in AWS which sets up EC2 instance, applying auto-scaling rules using command -----> *eb create stroke-serving-env*
+It creates the application and launches the ***stroke-serving environment***. It also generates a public url which can be used to reach the application and make predictions.
+* Finally, we can test the cloud service to make predictions about new 'sample person' as input using commnad -----> *python FinalModelpredicttest.py* 
+![image](https://user-images.githubusercontent.com/50409210/139912332-cf342652-d25d-499f-a57e-dd2b9831de0a.png)
+It results in giving us stroke predictions and probabilities from our model for the new sample person (as shown below).
+![image](https://user-images.githubusercontent.com/50409210/139912024-7dbd12e8-f08a-4196-8193-718ebb800772.png)  
+Thus, our stroke-prediction service is deployed inside a container on AWS Elastic Beanstalk (as shown below). To reach it, we use its public URL.
+
+![image](https://user-images.githubusercontent.com/50409210/139912524-47a45d6b-15f0-4060-9c4f-6e8a6d672337.png)
+
+
+
+
+
+
+
+
 
