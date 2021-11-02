@@ -115,7 +115,7 @@ After tuning the models with different parameters the final models from each typ
     * Final Random Forest Model - max_depth = 5; min_samples_leaf = 50; max_features = 10,; n_estimators = 180
     * Final XGBoost Model -(training for 200 iterations) - eta = 0.1; max_depth = 3; min_child_weight = 20
 
-* **Selecting the Best Model** - Once final models were built next step was choosing between final Decision tree, Random forest and XGBoost for Classification models. This was done by evaluating each of the final models on the validation set and comparing the AUC scores. By doing so, I found that, ***XGBoost for Classification model** gave the best AUC score on validation set hence, it was selected as the **best model for Stroke Prediction dataset**. 
+* **Selecting the Best Model** - Once final models were built next step was choosing between final Decision tree, Random forest and XGBoost for Classification models. This was done by evaluating each of the final models on the validation set and comparing the AUC scores. By doing so, I found that, ***XGBoost for Classification*** model gave the best AUC score on validation set hence, it was selected as the **best model for Stroke Prediction dataset**. 
 
 Thereafter, I used this best model to predict on testing set (unseen data) where also it performed fairly close to the validation set scores. Finally, this best model was then saved as a Python script for further deployment as a web service.
 
