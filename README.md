@@ -277,6 +277,9 @@ Following steps were undertaken in this regard:-
 
 It creates the application and launches the ***stroke-serving environment***. It also generates a public url which can be used to reach the application and make predictions.
 
+![image](https://user-images.githubusercontent.com/50409210/139920909-6616f3f1-af9e-4ae2-b879-f098b48ea3a0.png)
+
+
 * Finally, we can test the cloud service to make predictions about new 'sample person' as input using commnad -----> *python FinalModelpredicttest.py* 
 
 ![image](https://user-images.githubusercontent.com/50409210/139912332-cf342652-d25d-499f-a57e-dd2b9831de0a.png)
