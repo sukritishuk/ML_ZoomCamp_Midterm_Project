@@ -207,6 +207,7 @@ This Docker image file would have dependencies for my project.
 
 ## Instructions for Local Deployment of Stroke Prediction Project:
 
+
 In this section I have summarized the steps for running the Best model  (**XGBoost for Classification**) for my project after exporting it from Notebook to a script and deploying it locally as an app using Docker.
 
 Below are the steps in this regard:-
