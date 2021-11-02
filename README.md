@@ -4,7 +4,7 @@
 
 Prepared by - Sukriti Shukla
 
-## Introduction 
+## Introduction:
 
 Stroke as a medical condition can cause severe health implications and even lead to the death of a person. If identified and treated within time, it can save one's life. There are a number of factors that can lead to strokes. The purpose of this project was to understand what are the factors that influence the incidents of strokes in patients. It was interesting to study a publicly available dataset in Kaggle and make use of Python Machine Learning techniques to build a model for predicting strokes incidents using Supervised Machine learning techniques.
 
@@ -15,16 +15,16 @@ Once the best model for my dataset was selected its code was exported from a Pyt
 Lastly, I also tried deploying the stroke prediction service to the cloud using AWS Elastic Beanstalk. This cloud environment created for the stroke prediction service was then used to make predictions for a new 'sample person' as input.
 
 
+
 ## Data Sources and Preparation: 
 
 ### Sources of Data -
 
 For this project, I retrieved data from Kaggle Public Dataset - [Stroke Prediction Dataset](https://www.kaggle.com/fedesoriano/stroke-prediction-dataset) Data was shared on Kaggle as a csv file (*healthcare-dataset-stroke-data.csv*).
 
+### Data Processing Steps - 
 
-### Data Preparaion and Process Steps - 
-
-Following steps were used in preparing the data from the source:-
+Following steps were used in preparing the data for this project:-
 
 * I processed the dataset using Python in-built functions and libraries such as **Pandas** for manipulation and structuring them as DataFrames.**Numpy** functions along with statistical analysis techniques like scaling were used to align the ranges of different factors. 
 * Once the data was cleaned & formatted it was used to perform Exploratory Data Analysis (EDA) and create a series of visualizations for drawing insights about factors.
@@ -101,7 +101,6 @@ For each of the model feature importance was done to identify which features con
 
 ![image](https://user-images.githubusercontent.com/50409210/139699504-2deae157-1877-4df0-b41b-887ac8923e79.png)
 
-
 * **Parameter Tuning of Models** - The parameters for each of the above models were also tuned to find the most optimal parameters. 
 Following were the parameters tuned for each model.
      * Decision Trees for Classification - selecting max_depth , min_samples_leaf and max_features
@@ -121,11 +120,12 @@ Thereafter, I used this best model to predict on testing set (unseen data) where
 
 ## Dealing with Imbalanced Classes:
 
-* **Balancing Imbalanced Classes** - As the stroke prediction dataset contained imbalanced classes additinally I tried to balance the dataset using SMOTE technique. This was used to oversample the minority class (stroke=1 i.e., those with a risk of having stroke). The decision tree, random forest and XGBoost models were trained on oversampled dataset and predictions made on validation set. AUC scores were computed on all the three models to understand what effect did balancing of data labels have on the model predictions.Here too the XGBoost for Classification model outperformed the others.
+* **Balancing Imbalanced Classes** - As the stroke prediction dataset contained imbalanced classes additinally I tried to balance the dataset using SMOTE technique. This was used to oversample the minority class (stroke=1 i.e., those with a risk of having stroke). 
+
+* **Evaluating using Balanced dataset** - The decision tree, random forest and XGBoost models were trained on oversampled dataset and predictions made on validation set. AUC scores were computed on all the three models to understand what effect did balancing of data labels have on the model predictions.Here too the XGBoost for Classification model outperformed the others.
    
 
-
-## Exporting Best Model Notebook to Python script - 
+## Exporting Best Model to Python script:
 
 The code for best model i.e., XGBoost for Classification was first saved as a Python Notebook (Final Model Code.ipynb) then saved as a Python script (FinalModeltrain.py) for further deployment as a web service.
 
@@ -144,9 +144,9 @@ With unpacking the model and the DictVectorizer here, I would be able to predict
 
 
 
-### Putting the Model into a Web Service and deploying it locally with Docker - 
+## Putting the Model into a Web Service and Local Deployment using Docker: 
 
-**Creating a Web service for our Model using Flask** - 
+**Creating a Web service for Model using Flask** - 
 
 Name of Python script used - ***FinalModelpredict.py***
 
@@ -203,7 +203,7 @@ This Docker image file would have dependencies for my project.
 
 
 
-## Instructions about Running the Project:
+## Instructions for Local Deployment of Stroke Prediction Project:
 
 In this section I have summarized the steps for running the Best model  (**XGBoost for Classification**) for my project after exporting it from Notebook to a script and deploying it locally as an app using Docker.
 
@@ -254,7 +254,7 @@ At last our Stroke Prediction project has been deployed locally using Docker con
 
 
 
-**Cloud Deployment of Stroke Prediction Service using AWS Elastic Beanstalk** -
+## Cloud Deployment of Stroke Prediction Service using AWS Elastic Beanstalk** -
 
 Once my Stroke prediction was deloyed locally I also tried to deploy it to the cloud using AWS Elastic Beanstalk. This was done using a special utility Elastic Beanstalk command-line interface (CLI).
 
@@ -267,13 +267,21 @@ Following steps were undertaken in this regard:-
 * Now we first test our application locally sby specifying the port 5000 using command -----> *eb local run --port 5000*. It will first build an image and then run the container. 
 
 * Then we make predictions about new 'sample customer' using command as earlier -----> *python FinalModelpredicttest.py*
+
 ![image](https://user-images.githubusercontent.com/50409210/139911782-c07e2ca9-30f6-4f91-9f42-cb50216e14a5.png)
+
 * Now, we create the stroke-serving environment in AWS which sets up EC2 instance, applying auto-scaling rules using command -----> *eb create stroke-serving-env*
+
 It creates the application and launches the ***stroke-serving environment***. It also generates a public url which can be used to reach the application and make predictions.
+
 * Finally, we can test the cloud service to make predictions about new 'sample person' as input using commnad -----> *python FinalModelpredicttest.py* 
+
 ![image](https://user-images.githubusercontent.com/50409210/139912332-cf342652-d25d-499f-a57e-dd2b9831de0a.png)
+
 It results in giving us stroke predictions and probabilities from our model for the new sample person (as shown below).
+
 ![image](https://user-images.githubusercontent.com/50409210/139912024-7dbd12e8-f08a-4196-8193-718ebb800772.png)  
+
 Thus, our stroke-prediction service is deployed inside a container on AWS Elastic Beanstalk (as shown below). To reach it, we use its public URL.
 
 ![image](https://user-images.githubusercontent.com/50409210/139912524-47a45d6b-15f0-4060-9c4f-6e8a6d672337.png)
