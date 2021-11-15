@@ -7,7 +7,7 @@ DataTalks.Club - [Machine Learning Zoomcamp](https://datatalks.club/courses/2021
 
 Prepared by - [Sukriti Shukla](https://www.linkedin.com/in/sukriti-shukla-3989a819/)
 
-![https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260](https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260)
+![pexels-karolina-grabowska-4386467](https://user-images.githubusercontent.com/50409210/141792019-f6d135a3-3c15-43ae-9161-190785567d9c.jpg)
 
 Photo by Karolina Grabowska from Pexels
 
