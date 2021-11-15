@@ -2,7 +2,14 @@
 
 # **Building & Deploying a Python ML Model for Stroke Predictions**
 
-Prepared by - Sukriti Shukla
+## (Deploying a Classification-based Model in AWS Cloud using Flask & Docker)
+DataTalks.Club - [Machine Learning Zoomcamp](https://datatalks.club/courses/2021-winter-ml-zoomcamp.html) **Midterm Project** - an initiative by Alexey Grigorev
+
+Prepared by - [Sukriti Shukla](https://www.linkedin.com/in/sukriti-shukla-3989a819/)
+
+![https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260](https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260)
+
+Photo by Karolina Grabowska from Pexels
 
 ## Introduction:
 
