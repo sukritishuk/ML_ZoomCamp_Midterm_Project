@@ -264,7 +264,7 @@ At last our Stroke Prediction project has been deployed locally using Docker con
 
 
 
-## Cloud Deployment of Stroke Prediction Service using AWS Elastic Beanstalk -
+## Cloud Deployment of Stroke Prediction Service using AWS Elastic Beanstalk:
 
 Once my Stroke prediction was deloyed locally I also tried to deploy it to the cloud using AWS Elastic Beanstalk. This was done using a special utility Elastic Beanstalk command-line interface (CLI).
 
