@@ -19,6 +19,7 @@ Firstly, I prepared my data by cleaning and formatting the dataset. Then, I used
 
 Since my dataset was used to predict strokes, I used Binary Classification models from Python to train on my datasets. After this, I trained multiple Binary Classification models both Regression-based & Tree-based. Each of the model was evaluated using classification metrics AUC score and their performances compared. Thereafter the models were tuned using different parameters to find the most optimal parameters. Lastly, multiple final models with optimal parameters were run to select the Best Model for making stroke predictions on this dataset.
 
+
 Once the best model for my dataset was selected its code was exported from a Python Notebook into a Python script. Thereafter, this model was put into a web service using Flask. A Python virtual environment was created using Pipenv containing all the necessary dependencies and packages for running the model. Then the model was deployed locally using Docker as a containerized service. Then this locally deployed model was used to predict the risk of stroke for a new 'sample person' with unseen data as input. The model gave as output, details regarding the risk of stroke (as True or False) and probability of stroke for a 'sample person' as inputs to the model. 
 
 Lastly, I also tried deploying the stroke prediction service to the cloud using AWS Elastic Beanstalk. This cloud environment created for the stroke prediction service was then used to make predictions for a new 'sample person' as input.
